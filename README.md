@@ -1,102 +1,121 @@
-# CLOUDHAWK REAL-TIME AWS CLOUDTRAIL RISK DETECTION SYSTEM
+# ☁️ CloudHawk
+### Real-Time AWS Cloud Security Monitoring & Threat Detection
 
-## Overview
+![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python)
+![Flask](https://img.shields.io/badge/Flask-Web%20Framework-black?logo=flask)
+![AWS](https://img.shields.io/badge/AWS-CloudTrail-orange?logo=amazonaws)
+![Amazon S3](https://img.shields.io/badge/Amazon-S3-red?logo=amazons3)
+![License](https://img.shields.io/badge/License-Educational-green)
 
-CloudHawk Enhanced is a cloud security monitoring and threat detection platform developed using Python, Flask, AWS CloudTrail, and Amazon S3. The project acts as a lightweight SIEM-like solution that continuously monitors AWS infrastructure activities by collecting and analyzing CloudTrail logs stored in S3 buckets.
+CloudHawk is a lightweight cloud security monitoring system that continuously analyzes **AWS CloudTrail** logs to identify suspicious cloud activities in near real time. Built using **Python**, **Flask**, **Boto3**, and **Amazon S3**, the system converts raw AWS audit logs into actionable security insights through a centralized web dashboard.
 
-The system uses a rule-based detection engine to identify suspicious and security-critical activities such as:
-
-* S3 bucket deletion
-* IAM privilege escalation
-* CloudTrail tampering
-* Security group modifications
-* Unauthorized access attempts
-
-The platform classifies events into multiple severity levels including:
-
-* Critical
-* High
-* Medium
-* Low
-
-It also generates human-readable security narratives for easier incident investigation and analysis.
-
-A real-time Flask dashboard provides centralized visibility into AWS cloud activities, enabling efficient threat monitoring, security auditing, and incident response.
-
-This project demonstrates practical implementation of:
-
-* Cloud Security Monitoring
-* AWS Log Analysis
-* Threat Detection Engineering
-* SOC Monitoring Concepts
-* DevSecOps Practices
+The project demonstrates practical cloud security monitoring by detecting critical events such as unauthorized IAM user creation, privilege escalation, CloudTrail tampering, and resource termination using a rule-based detection engine.
 
 ---
 
-# Features
+# 📌 Features
 
-* Real-time AWS CloudTrail log monitoring
-* Rule-based threat detection engine
-* Severity-based alert classification
-* Human-readable incident narratives
-* Flask-based monitoring dashboard
-* AWS S3 integration for log collection
-* Security event analysis and auditing
-* Lightweight SIEM-inspired architecture
-
----
-
-# Technologies Used
-
-| Technology     | Purpose                      |
-| -------------- | ---------------------------- |
-| Python         | Core backend logic           |
-| Flask          | Web dashboard and API        |
-| AWS CloudTrail | Cloud activity logging       |
-| Amazon S3      | Log storage                  |
-| HTML/CSS       | Frontend dashboard           |
-| JSON           | Log data storage and parsing |
+- Real-time AWS CloudTrail log monitoring
+- Automated log retrieval from Amazon S3
+- Rule-based threat detection
+- Threat severity classification
+- Live Flask monitoring dashboard
+- Detailed event logging
+- Continuous background monitoring
+- Lightweight and scalable architecture
 
 ---
 
-# Project Structure
+# 🏗️ System Architecture
+
+```
+                AWS Cloud Environment
+                         │
+                         ▼
+                 AWS CloudTrail Logs
+                         │
+                         ▼
+                    Amazon S3 Bucket
+                         │
+                         ▼
+                  Boto3 Log Collector
+                         │
+                         ▼
+               Log Processing Engine
+                         │
+                         ▼
+             Rule-Based Threat Detection
+                         │
+                         ▼
+               Flask Web Dashboard
+                         │
+                         ▼
+                    Security Analyst
+```
+
+---
+
+# 🚀 Technologies Used
+
+| Category | Technology |
+|----------|------------|
+| Programming Language | Python |
+| Web Framework | Flask |
+| Cloud Platform | AWS |
+| Cloud Logging | AWS CloudTrail |
+| Cloud Storage | Amazon S3 |
+| AWS SDK | Boto3 |
+| Frontend | HTML5, CSS3 |
+| Data Format | JSON |
+| Detection Engine | Rule-Based Security Analysis |
+| Background Processing | Python Multithreading |
+
+---
+
+# 📂 Project Structure
 
 ```bash
-cloudhawk/
+CloudHawk/
 │
-├── app.py                  # Main Flask application
-├── aws_fetch.py            # Fetches AWS CloudTrail logs from S3
-├── model.py                # Threat detection and analysis engine
-├── requirements.txt        # Project dependencies
+├── app.py                     # Main Flask application
+├── aws_fetch.py               # Retrieves CloudTrail logs
+├── detector.py                # Rule-based detection engine
+├── requirements.txt
 │
 ├── data/
-│   └── logs.json           # Sample CloudTrail logs
+│   └── logs.json
 │
 ├── templates/
-│   └── index.html          # Dashboard frontend
+│   └── index.html
 │
-└── __pycache__/            # Python cache files
+├── static/
+│   ├── css/
+│   └── images/
+│
+└── README.md
 ```
 
 ---
 
-# Installation
+# ⚙️ Installation
 
-## Step 1: Clone the Repository
+## Clone Repository
 
 ```bash
-git clone https://github.com/your-username/cloudhawk-enhanced.git
-cd cloudhawk-enhanced
+git clone https://github.com/yourusername/cloudhawk.git
+
+cd cloudhawk
 ```
 
 ---
 
-## Step 2: Create Virtual Environment
+## Create Virtual Environment
 
 ### Windows
 
 ```bash
 python -m venv venv
+
 venv\Scripts\activate
 ```
 
@@ -104,12 +123,13 @@ venv\Scripts\activate
 
 ```bash
 python3 -m venv venv
+
 source venv/bin/activate
 ```
 
 ---
 
-## Step 3: Install Dependencies
+## Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -117,148 +137,139 @@ pip install -r requirements.txt
 
 ---
 
-# Running the Project
+# ▶️ Run the Application
 
 ```bash
 python app.py
 ```
 
-After running the application, open:
+Open your browser and visit
 
-```bash
+```
 http://127.0.0.1:5000
 ```
 
 ---
 
-# Detection Capabilities
+# 🔍 Threat Detection Capabilities
 
-The system can detect multiple suspicious AWS activities including:
+CloudHawk continuously monitors CloudTrail logs and detects events including:
 
-| Threat Type                 | Severity |
-| --------------------------- | -------- |
-| S3 Bucket Deletion          | Critical |
-| IAM Policy Changes          | High     |
-| CloudTrail Disabled         | Critical |
-| Security Group Modification | Medium   |
-| Unauthorized Login Attempts | High     |
-
----
-
-# Sample Workflow
-
-1. AWS CloudTrail generates activity logs.
-2. Logs are stored inside Amazon S3.
-3. CloudHawk Enhanced fetches logs periodically.
-4. The detection engine analyzes suspicious events.
-5. Alerts are categorized by severity.
-6. Results are displayed on the Flask dashboard.
+| Threat | Description |
+|---------|-------------|
+| IAM User Creation | Detects unauthorized IAM account creation |
+| Privilege Escalation | Identifies suspicious permission changes |
+| CloudTrail Tampering | Detects attempts to disable logging |
+| Resource Termination | Monitors deletion of critical AWS resources |
+| Security Group Changes | Detects potentially risky firewall modifications |
+| Root Account Activity | Flags sensitive root user operations |
 
 ---
 
-#Future Improvements
+# 🔄 Workflow
 
-* Machine Learning-based anomaly detection
-* Real-time alerts using Email/SMS notifications
-* Multi-cloud support for Azure and GCP
-
----
-
-# Learning Outcomes
-
-This project helped in understanding:
-
-* AWS Cloud Security
-* CloudTrail log monitoring
-* Threat detection engineering
-* Flask web development
-* Security Operations Center (SOC) workflows
-* DevSecOps concepts
+1. AWS CloudTrail records cloud activities.
+2. Logs are stored in Amazon S3.
+3. CloudHawk periodically retrieves the latest logs.
+4. Log files are decompressed and parsed.
+5. Rule-based detection analyzes security events.
+6. Threats are classified by severity.
+7. Results are displayed on the web dashboard.
+8. Monitoring repeats automatically every five minutes.
 
 ---
 
-# Requirements
+# 📸 Dashboard
 
-Install all dependencies using:
+Add screenshots here after deployment.
+
+```
+dashboard-home.png
+
+threat-analysis.png
+
+event-logs.png
+```
+
+---
+
+# 🌟 Key Highlights
+
+- Near real-time cloud monitoring
+- Automated threat analysis
+- Lightweight architecture
+- Continuous background monitoring
+- Easy-to-use security dashboard
+- AWS native integration
+- Scalable monitoring solution
+
+---
+
+# 📚 Learning Outcomes
+
+This project helped strengthen practical knowledge of:
+
+- AWS Cloud Security
+- AWS CloudTrail
+- Amazon S3
+- Python Automation
+- Flask Web Development
+- Cloud Log Analysis
+- Threat Detection Engineering
+- Security Monitoring
+- DevSecOps Fundamentals
+
+---
+
+# 🔮 Future Enhancements
+
+- Email and SMS alert integration
+- Slack and Microsoft Teams notifications
+- Support for Azure and Google Cloud
+- Advanced threat scoring
+- Interactive analytics dashboard
+- Containerized deployment using Docker
+- Kubernetes deployment
+- SIEM integration
+
+---
+
+# 📦 Requirements
+
+```txt
+Python 3.10+
+
+Flask
+
+boto3
+```
+
+Install dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Main libraries used:
+---
 
-```txt
-Flask
-boto3
-```
+# 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome.
+
+Feel free to fork the repository and submit pull requests.
 
 ---
 
-# GitHub Upload Steps
+# 👨‍💻 Author
 
-## Initialize Git
+**Your Name**
 
-```bash
-git init
-```
+Bachelor of Technology (Computer Science & Engineering – Cybersecurity)
 
-## Add Files
-
-```bash
-git add .
-```
-
-## Commit Files
-
-```bash
-git commit -m "Initial commit - CloudHawk Enhanced"
-```
-
-## Create GitHub Repository
-
-1. Open GitHub
-2. Click on "New Repository"
-3. Repository Name: `cloudhawk-enhanced`
-4. Click "Create Repository"
+Cloud Security • DevSecOps • Python • AWS
 
 ---
 
-## Connect Local Project to GitHub
-
-```bash
-git remote add origin https://github.com/your-username/cloudhawk-enhanced.git
-```
-
----
-
-## Push Project to GitHub
-
-```bash
-git branch -M main
-git push -u origin main
-```
-
----
-
-# Suggested .gitignore
-
-Create a `.gitignore` file and add:
-
-```gitignore
-venv/
-__pycache__/
-*.pyc
-.env
-```
-
----
-
-# Author
-
-Developed as a cloud security and threat detection project using AWS services and Python.
-
----
-
-# License
+# 📄 License
 
 This project is developed for educational and learning purposes.
