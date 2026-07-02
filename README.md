@@ -88,10 +88,6 @@ CloudHawk/
 ├── templates/
 │   └── index.html
 │
-├── static/
-│   ├── css/
-│   └── images/
-│
 └── README.md
 ```
 
